@@ -9,5 +9,10 @@
       <label for="url">tinyURL:</label>
       <textarea type="url" class="form-control" id="url" name="tinyURL" [(ngModel)]="tinyURL"></textarea>
     </div>
+    <button class="btn btn-primary" (click)="getOriginURL(tinyURL)">Get originURL</button>
+    <div class="form-group">
+      <label for="url">originURL:</label>
+      <textarea type="url" class="form-control" id="url" name="originURL" [(ngModel)]="originURL"></textarea>
+    </div>
   </form>
 </div>
