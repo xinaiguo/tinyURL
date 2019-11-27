@@ -17,23 +17,25 @@ export class AppComponent implements OnInit {
   }
 
   createTinyURL(longURL: string) {
-    let i = this.hashCode(longURL);
-    let code = longURL.split('/')[0] + longURL.split('/')[1] + '//' + longURL.split('/')[2] + '/';
+    const i = this.hashCode(longURL);
+    const code = longURL.split('/')[0] + longURL.split('/')[1] + '//' + longURL.split('/')[2] + '/';
     this.map.set(this.base10ToBase62(Math.abs(i)), longURL);
     this.tinyURL = code + this.base10ToBase62(Math.abs(i));
     console.log(this.map);
   }
 
   getOriginURL(shortUrl) {
-    let host = shortUrl.split('/')[0] + shortUrl.split('/')[1] + '//' + shortUrl.split('/')[2] + '/'
-    let code = shortUrl.replace(host, "");
+    const host = shortUrl.split('/')[0] + shortUrl.split('/')[1] + '//' + shortUrl.split('/')[2] + '/'
+    const code = shortUrl.replace(host, '');
     this.originURL = this.map.get(code);
   }
 
-  //convert longurl to hashcode
+  // convert longurl to hashcode
   hashCode(str) {
     let hash = 0, i, chr, len;
-    if (str.length === 0) return hash;
+    if (str.length === 0) {
+      return hash;
+    }
     for (i = 0, len = str.length; i < len; i++) {
       chr = str.charCodeAt(i);
       hash = ((hash << 6) - hash) + chr;
@@ -44,12 +46,12 @@ export class AppComponent implements OnInit {
 
 
   base10ToBase62(number) {
-    let chars = '0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ'.split(''),
-      radix = chars.length,
-      qutient = +number,
-      arr = [];
+    const chars = '0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ'.split('');
+    const radix = chars.length;
+    let qutient = +number;
+    const arr = [];
     do {
-      let mod = qutient % radix;
+      const mod = qutient % radix;
       qutient = (qutient - mod) / radix;
       arr.unshift(chars[mod]);
     } while (qutient);
